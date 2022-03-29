@@ -1,1 +1,1 @@
-# Pride_Prediction_Bot
+# Crypto_Price_Prediction_Bot
