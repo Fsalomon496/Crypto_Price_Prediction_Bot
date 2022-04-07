@@ -1,11 +1,12 @@
 # Miami FinTech Bootcamp
-## Project #2 
+## Project #2 - Crypto Price Prediction & Technical Analysis
 
 ## Team Members:
-    *Fabrice Salomon
-    *Anthony Segovia
-    *Josina Baiao
-    *Clif Charles
+    * Fabrice Salomon
+    * Anthony Segovia
+    * Josina Baiao
+    * Clifford Charles
+    * Chad Burford
 
 ![Crypto_Chart](Images/Price_Prediction.png)
 
@@ -13,15 +14,15 @@
 
 Often, investers will use third party companies to provide financial information and advice for their investment desicions. This is definately the case when it comes to the Crypto Space, as there is a lot of unknown and investers may be new to this new asset class. We plan to build the following items in order to provide our investment advice within the Crypto Space:
 1. Build a price predictive model that will provide an investor with the future price action of a particular crypto. For purposes of this project, we used Ripple (XRP) for our sample crypto for analysis.
-2. Build indicators which will allow us to understand different entry and exit points and convey this advice to our investment clients.
+2. Build indicators which will allow us to perform Technical Analysis and understand different entry and exit points and convey this advice to our investment clients.
 
 # Project Goals
-## Cryptocurrency Price Prediction using Machine Learning and Python
-    1. We will compare several machine learning models for predicting stock prices for a given crypto currency. We will use past data to   predict price for several days into the future.
+## Cryptocurrency Price Prediction and Technical Analysis
+1. We will compare several machine learning models for predicting stock prices, volitility and sentiment for a given crypto currency. We will use past data to predict price for several days into the future.
         a. We will use yfinance to pull past ticker information
-    2. We also will use a variety of indicators as features to predict future pricing such as MACD, Bollinger Bands and Rolling Averages.
-    3. Prepare a 10-15 minute presentation that demonstrates how machine learning can be used to solve problems in FinTech.
-
+        b. We used the crypto currency Ripple (XRP) for purposes of this project
+2. We also conduct Technical Analysis using a variety of indicators such as MACD, Bollinger Bands, Fibannoci Retracement and Rolling Averages.
+3. Prepare a 10-15 minute presentation that demonstrates how machine learning can be used to solve problems in FinTech.
 - - -
 
 ## Files
@@ -32,15 +33,20 @@ Note: The notebooks show the final models used for the project, however, multipl
 
 [Time-Series ARIMA & GARCH](Code_Files/Crypto_TimeSeries_Forecasting.ipynb)
 
-[Linear Regression Starter Notebook](Code_Files/Crytpo_AutoTS_Forecasting.ipynb)
+[Time-Series AutoTS](Code_Files/Crytpo_AutoTS_Forecasting.ipynb)
 
-[Yen Data CSV File](Code_Files/Crytpo_LSTM_Forecasting.ipynb)
+[LSTM RNN Model](Code_Files/Crytpo_LSTM_Forecasting.ipynb)
 
+[Sentiment Analysis](Code_Files/sentiment analysis.ipynb)
+
+[Bollinger Bands Indicator](Code_Files/bollinger.ipynb)
+
+[MACD & Fibonacci Indicators](Code_Files/MACD_and_Fibonacci_levels.ipynb)
 - - -
 
-## Code Execution - Build Price Predictor and Indicators
+# Code Execution - Build Price Predictor and Indicators
 
-### Time-Series Forecasting
+## Time-Series Forecasting, Volitility, and Sentiment
 1. ARIMA  - Used historical day close data pulled from Yahoo Finance, applied time series analysis and modeling to determine if there is a predictable behavior.
     a. Pulled in data, created a dataframe and ploted Date, Open, High, Low, Close, Adj Close, Volume.
     b. Trimmed data to September of 2020, and wrangled df in preperation for model.
@@ -55,7 +61,7 @@ Note: The notebooks show the final models used for the project, however, multipl
     d. Plot the 5-day forecast of the volatility
 3. LSTM - In this notebook, we build and train a custom LSTM RNN that uses a 7 day window of XRP closing prices to predict the 11th day closing price. 
     a. Prepare the data for training and testing
-        > Create a function that accepts the column number for the features (X) and the target (y)
+        > create a function that accepts the column number for the features (X) and the target (y)
         > defined X and y and determine feature and target column
         > split data into train and test sets for both X and y
         > used MinMaxScaler to scale data and then reshaped the features for the model
@@ -67,16 +73,51 @@ Note: The notebooks show the final models used for the project, however, multipl
     c. Evaluate the performance of the model
         > the y_test predictions had a loss of .0055
         > performed our prediction, recovered the original prices by using inverse_transform, and created a dataframe with Real and Predicted colums
-        > Ploted Real against Predicted results
+        > ploted Real against Predicted results
  ![XRP Price Prediction](Images/LSTM_xrp_chart.png)       
-4. autoTS - AutoTS is a time series package for Python designed for rapidly deploying high-accuracy forecasts at scale. We used autoTS to predict a 10 day forecast of XRP.
-    a. inport AutoTS and pull in data from yfinance and plot data
+4. AutoTS - AutoTS is a time series package for Python designed for rapidly deploying high-accuracy forecasts at scale. We used autoTS to predict a 10 day forecast of XRP.
+    a. import AutoTS and pull in data from yfinance and plot data
     b. set autoTS model
-        > use 10 day forecast length and fropped data older than 200 periods
+        > use 10 day forecast length and dropped data older than 200 periods
         > fit the model to the data and run
         > predict the model and forecast 10 days - print results
         > plot predictions
     c. Check performance and accuracy of model with model.results and "validation" data.
-        
+3. Sentiment Analysis - we used natural language processing and text analysis, to systematically identify, extract, quantify, and study affective states and subjective information for XRP.
+    a. utilized Newsapi and imported NewsApiClient to capture text for analysis
+    b. utilized SentimentIntensityAnalyzer from nltk.sentiment.vader for analysis
+ ![Sentiment Analysis](Images/Sentiment_chart.png) 
+    
+## Indicators - Technical Analysis
+1. Bollinger Band - TA indicator that is plotted at a standard deviation level above and below a simple moving average of the price
+    a. utilized Finta and their Technical Analysis module to build Bollinger Bands
+    b. used Yahoo Finance for data
+2. Moving Average Convergence Divergence - a trend-following momentum indicator that shows the relationship between two moving averages of a security's price.
+    a. utilized Finta and their Technical Analysis module to build MACD
+    b. visualized the MACD indicator and set the signal column
+    c. developed the algorithm, tested it and evaluate
+    d. algo for XRP made a total profit/loss of the trading strategy of $1,647.05
+    
+3. Fibonacci Retracement - a method of technical analysis for determining support and resistance levels.
+    a. created a Fibonacci Signals dataframe looking at the actual return price, highest and lowest point and their difference
+    b. visualized the Fibonacci Levels and created a new function to "Implement Fibonacci Strategy"
+    c. created a "buy" and "sell" dataframe and split the data into a training and testing set
+    d. scaled the date using StandardScaler(), fit the model and run
+    e. created and ran model for XRP and made a total profit/loss of the trading strategy of $56,032.16
+
+- - -
+
 # Summary - Investment Recommendations
+## Price Prediction
+    1. All three models showed upward price predictions over the upcoming week
+    2. The GARCH volitility model showed higher risk, but this is not uncommon in the crypto space
+    3. The Sentiment Analysis showed relatively neutral, which is a positive signal, as crypto stocks have been in a down turn since November of 2021
+## Technical Analysis 
+    1. Analysis of the Moving Average indicators, we see an upward trend in XRP with the lower MA crossing up and over the higher MA around March 17th
+    2. We also see the price action moving up past the Fibinacci 0.382 band and towards the 0.5 band, showing a bullish signal
+    3. Lastly, the Bollinger Band analysis shows an upward trend but not breaking out above the high band. The band is trending slightly upward, but looks to be consolidating, which could be an indicator of a break up in price.
+    
+## Our XRP investment recommendation,  based on price prediction models and technical analysis, is a buy at this time
+
+**this is for academic use only, NOT for specific investment advice**
 
