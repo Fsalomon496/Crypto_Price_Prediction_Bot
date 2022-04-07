@@ -11,13 +11,13 @@
 
 # Background
 
-Often, investers will use third party companies to provide financial information and advice for their investment desicions. This is definately the case when it comes to the Crypto Space, as there is a lot of unkown and investers may be new to this new asset class. We plan to build to following items in order to provide our investment advice within the Crypto Space:
-1. Build a price predictive model that will provide an invester with the future price action of a particular crypto. For purposes of this project, we used Ripple (XRP) for our sample crypto for analysis.
-2. Build indicators which will allow us to understand entry and exit points and convey this advice to our investment clients.
+Often, investers will use third party companies to provide financial information and advice for their investment desicions. This is definately the case when it comes to the Crypto Space, as there is a lot of unknown and investers may be new to this new asset class. We plan to build the following items in order to provide our investment advice within the Crypto Space:
+1. Build a price predictive model that will provide an investor with the future price action of a particular crypto. For purposes of this project, we used Ripple (XRP) for our sample crypto for analysis.
+2. Build indicators which will allow us to understand different entry and exit points and convey this advice to our investment clients.
 
 # Project Goals
 ## Cryptocurrency Price Prediction using Machine Learning and Python
-    1. We will compare several machine learning models for predicting stock prices for a given crypto currency. We will use past data to predict price for several days into the future.
+    1. We will compare several machine learning models for predicting stock prices for a given crypto currency. We will use past data to   predict price for several days into the future.
         a. We will use yfinance to pull past ticker information
     2. We also will use a variety of indicators as features to predict future pricing such as MACD, Bollinger Bands and Rolling Averages.
     3. Prepare a 10-15 minute presentation that demonstrates how machine learning can be used to solve problems in FinTech.
@@ -41,7 +41,7 @@ Note: The notebooks show the final models used for the project, however, multipl
 ## Code Execution - Build Price Predictor and Indicators
 
 ### Time-Series Forecasting
-1. ARIMA  - Used historical day close data pulled from Yahoo Finance, applied time series analysis and modeling to determin if there is a predictable behavior.
+1. ARIMA  - Used historical day close data pulled from Yahoo Finance, applied time series analysis and modeling to determine if there is a predictable behavior.
     a. Pulled in data, created a dataframe and ploted Date, Open, High, Low, Close, Adj Close, Volume.
     b. Trimmed data to September of 2020, and wrangled df in preperation for model.
     c. Imported ARIMA model fit it to the data.
